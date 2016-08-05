@@ -1,0 +1,15 @@
+<template>
+	<div class="inner-wrapper ${animate ? 'animate' : ''}">
+		<form class="searchbox" if.bind="searchable && !staticMode && columns.length">
+			<input type="text" class="search"
+				   placeholder.bind="searchInputPlaceholder" value.bind="searchTerm"
+				   keyup.trigger="search()"/>
+		</form>
+		<table role="grid">
+			<thead ref="headerElement"></thead>
+			<tbody ref="bodyElement"></tbody>
+			<tfoot ref="footerElement" show.bind="toonFooter"></tfoot>
+		</table>
+	</div>
+	<slot></slot>
+</template>

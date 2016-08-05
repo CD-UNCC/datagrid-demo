@@ -1,0 +1,147 @@
+<template>
+	<require from="dist/datagrid"></require>
+	<require from="dist/converters/simpledateformatter"></require>
+
+	<style type="text/css">
+		datagrid.size table td:nth-child(1),
+		datagrid.size table th:nth-child(1) {
+			width: 20%;
+		}
+		datagrid.size table td:nth-child(2),
+		datagrid.size table th:nth-child(2) {
+			width: 35%;
+		}
+		datagrid.size table td:nth-child(3),
+		datagrid.size table th:nth-child(3) {
+			width: 20%;
+		}
+		datagrid.size table td:nth-child(4),
+		datagrid.size table th:nth-child(4) {
+			width: 25%;
+		}
+		.red {
+			color: red;
+		}
+		.green {
+			color: green;
+		}
+	</style>
+
+	<h1>Size</h1>
+
+	<p>
+		When there's only a small number of rows in the grid, scrolling and
+		searching become superfluous. But beyond a certain number of rows (we've
+		chosen 10) those features become more useful. So the datagrid has a
+		"static mode" that is used for less than the designated number of rows,
+		and a "dynamic mode" for more.
+	</p>
+	<p>
+		The "inner wrapper" also gets CSS-classes applied to it according to
+		the ratio of displayed rows to the maximum for static mode:
+		<code>quarter</code>, <code>half</code>, <code>threequarters</code> and
+		<code>full</code>. If there's more than the maximum number of rows, than
+		the class <code>overflowing</code> is used in addition to <code>full</code>.
+		You can use these classes e.g. to adjust the speed of the opening
+		animation.
+	</p>
+
+	<datagrid rows.bind="quarter" default-sort-colum="string" class="basic">
+		<column header="Date field" field="date">
+			${row.date | simpledateformatter}
+		</column>
+		<column field="string" row-header="true">
+			<header>
+				<em>Header with markup</em><br>
+				These are row-headers.
+			</header>
+		</column>
+		<column header="No field specified">
+			${parent.getRandomValue()}
+		</column>
+		<column header="Unsortable, unsearchable boolean field" field="boolean" sortable="false" searchable="false">
+			<span class.bind="row.boolean ? 'green' : 'red'">
+				${row.boolean ? "yes" : "no"}
+			</span>
+		</column>
+	</datagrid>
+	<datagrid rows.bind="data" default-sort-colum="string" class="basic">
+		<column header="Date field" field="date">
+			${row.date | simpledateformatter}
+		</column>
+		<column field="string" row-header="true">
+			<header>
+				<em>Header with markup</em><br>
+				These are row-headers.
+			</header>
+		</column>
+		<column header="No field specified">
+			${parent.getRandomValue()}
+		</column>
+		<column header="Unsortable, unsearchable boolean field" field="boolean" sortable="false" searchable="false">
+			<span class.bind="row.boolean ? 'green' : 'red'">
+				${row.boolean ? "yes" : "no"}
+			</span>
+		</column>
+	</datagrid>
+
+	<pre><code>.inner-wrapper {
+  animation: none 0.3s ease-in-out;
+
+  &.quarter {
+    animation-name: demoGridDownQuarter ;
+    @keyframes demoGridDownQuarter {
+      0%   { max-height: 0; padding-bottom: 0; }
+      100% { max-height: 140px; padding-bottom: 20px; }
+    }
+  }
+
+  &.half {
+    animation-name: demoGridDownHalf;
+    @keyframes demoGridDownHalf {
+      0%   { max-height: 0; padding-bottom: 0; }
+      100% { max-height: 227px; padding-bottom: 20px; }
+    }
+  }
+  &.threequarters {
+    animation-name: demoGridDownThreequarters;
+    @keyframes demoGridDownThreequarters {
+      0%   { max-height: 0; padding-bottom: 0; }
+      100% { max-height: 314px; padding-bottom: 20px; }
+    }
+  }
+  &.full {
+    animation-name: demoGridDownFull;
+    @keyframes demoGridDownFull {
+      0%   { max-height: 0; padding-bottom: 0; }
+      100% { max-height: 401px; padding-bottom: 20px; }
+    }
+  }
+
+  &.overflowing {
+    table {
+      thead, tfoot {
+        display: table;
+        width: 100%;
+
+        tr {
+          display: table;
+          width: calc( 100% - 16px );
+        }
+      }
+      tbody {
+        position: relative;
+        display: block;
+        max-height: 291px;
+        overflow-y: auto;
+
+        tr {
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        }
+      }
+    }
+  }
+}</code></pre>
+</template>

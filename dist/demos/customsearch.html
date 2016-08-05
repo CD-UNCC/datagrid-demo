@@ -1,0 +1,39 @@
+<template>
+	<require from="dist/datagrid"></require>
+	<require from="dist/converters/simpledateformatter"></require>
+
+	<h1>Custom searching</h1>
+
+	<p>
+		The default search algorithm looks at the values of bound rows, not at
+		how those values are rendered. If you want rows to show up in search
+		results even on search terms that aren't directly in the bound data, you
+		can implement a custom search algorithm. Try searching for a month in
+		the datagrid below.
+	</p>
+
+	<pre><code>searchFormattedDate(term: string, values: Date[]) {
+	const formatted = this.dateFormatter.toView(values[0]).toLowerCase();
+	return formatted.indexOf(term.trim().toLowerCase()) !== -1;
+}</code></pre>
+
+	<pre><code>&lt;datagrid rows.bind=&quot;data&quot; default-sort-order=&quot;desc&quot;&gt;
+	&lt;column field=&quot;a&quot; header=&quot;Date without custom search&quot; row-header=&quot;false&quot;&gt;
+		Rendered: \${row.a | simpledateformatter}&lt;br&gt;
+		Searched: \${row.a}
+	&lt;/column&gt;
+	&lt;column field=&quot;b&quot; header=&quot;Date with custom search&quot; matcher.bind=&quot;searchFormattedDate&quot;&gt;
+		\${row.b | simpledateformatter}
+	&lt;/column&gt;
+&lt;/datagrid&gt;</code></pre>
+
+	<datagrid rows.bind="data" default-sort-order="desc">
+		<column field="a" header="Date without custom search" row-header="false">
+			Rendered: ${row.a | simpledateformatter}<br>
+			Searched: ${row.a}
+		</column>
+		<column field="b" header="Date with custom search" matcher.bind="searchFormattedDate">
+			${row.b | simpledateformatter}
+		</column>
+	</datagrid>
+</template>

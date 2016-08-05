@@ -1,0 +1,144 @@
+body {
+  padding-top: 50px; }
+
+datagrid .inner-wrapper {
+  background-color: #E7EAF1;
+  margin-bottom: 10px; }
+  datagrid .inner-wrapper:not(.animate) {
+    border-bottom: 2px solid #243A7A;
+    border-top: 2px solid #243A7A;
+    padding-bottom: 20px; }
+  datagrid .inner-wrapper.animate:not(.au-entered) {
+    max-height: 0;
+    overflow-y: hidden; }
+  datagrid .inner-wrapper.animate.au-enter-active, datagrid .inner-wrapper.animate.au-entered {
+    border-bottom: 2px solid #243A7A;
+    border-top: 2px solid #243A7A; }
+  datagrid .inner-wrapper.animate.au-enter-active, datagrid .inner-wrapper.animate.au-enter-active-test {
+    animation: none 0.3s ease-in-out; }
+    datagrid .inner-wrapper.animate.au-enter-active.quarter, datagrid .inner-wrapper.animate.au-enter-active-test.quarter {
+      animation-name: demoGridDownQuarter; }
+
+@keyframes demoGridDownQuarter {
+  0% {
+    max-height: 0;
+    padding-bottom: 0; }
+  100% {
+    max-height: 140px;
+    padding-bottom: 20px; } }
+    datagrid .inner-wrapper.animate.au-enter-active.half, datagrid .inner-wrapper.animate.au-enter-active-test.half {
+      animation-name: demoGridDownHalf; }
+
+@keyframes demoGridDownHalf {
+  0% {
+    max-height: 0;
+    padding-bottom: 0; }
+  100% {
+    max-height: 227px;
+    padding-bottom: 20px; } }
+    datagrid .inner-wrapper.animate.au-enter-active.threequarters, datagrid .inner-wrapper.animate.au-enter-active-test.threequarters {
+      animation-name: demoGridDownThreequarters; }
+
+@keyframes demoGridDownThreequarters {
+  0% {
+    max-height: 0;
+    padding-bottom: 0; }
+  100% {
+    max-height: 314px;
+    padding-bottom: 20px; } }
+    datagrid .inner-wrapper.animate.au-enter-active.full, datagrid .inner-wrapper.animate.au-enter-active-test.full {
+      animation-name: demoGridDownFull; }
+
+@keyframes demoGridDownFull {
+  0% {
+    max-height: 0;
+    padding-bottom: 0; }
+  100% {
+    max-height: 401px;
+    padding-bottom: 20px; } }
+  datagrid .inner-wrapper.animate.au-entered {
+    padding-bottom: 20px; }
+  datagrid .inner-wrapper.overflowing table thead, datagrid .inner-wrapper.overflowing table tfoot {
+    display: table;
+    width: 100%; }
+    datagrid .inner-wrapper.overflowing table thead tr, datagrid .inner-wrapper.overflowing table tfoot tr {
+      display: table;
+      width: calc( 100% - 16px); }
+  datagrid .inner-wrapper.overflowing table tbody {
+    position: relative;
+    display: block;
+    max-height: 291px;
+    overflow-y: auto; }
+    datagrid .inner-wrapper.overflowing table tbody.scrollable-bottom {
+      box-shadow: inset 0 -30px 30px -30px #666; }
+    datagrid .inner-wrapper.overflowing table tbody.scrollable-top {
+      box-shadow: inset 0 30px 30px -30px #666; }
+    datagrid .inner-wrapper.overflowing table tbody.scrollable-bottom.scrollable-top {
+      box-shadow: inset 0 30px 30px -30px #666, inset 0 -30px 30px -30px #666; }
+    datagrid .inner-wrapper.overflowing table tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed; }
+  datagrid .inner-wrapper.overflowing table tfoot {
+    border-top: 1px solid #243A7A; }
+    datagrid .inner-wrapper.overflowing table tfoot td {
+      border-top: none; }
+  datagrid .inner-wrapper.overflowing.au-enter-active .overlay {
+    bottom: 0; }
+
+datagrid .searchbox .search {
+  color: #494949;
+  margin: 15px 0 15px 5px;
+  width: 50%;
+  height: 26px; }
+
+datagrid table {
+  width: 100%; }
+  datagrid table thead th,
+  datagrid table tbody td,
+  datagrid table tfoot td {
+    padding: 6px 4px;
+    vertical-align: top; }
+    datagrid table thead th:not(:last-child),
+    datagrid table tbody td:not(:last-child),
+    datagrid table tfoot td:not(:last-child) {
+      padding-right: 8px; }
+  datagrid table thead th {
+    color: #82848B;
+    font-weight: bold;
+    text-align: left;
+    background-color: #E7EAF1; }
+    datagrid table thead th.sortable {
+      cursor: pointer; }
+      datagrid table thead th.sortable svg {
+        width: 13px;
+        height: 13px;
+        vertical-align: middle;
+        fill: #82848B; }
+    datagrid table thead th.sorted.asc svg path:last-child {
+      fill: #c4c5c8; }
+    datagrid table thead th.sorted.desc svg path:first-child {
+      fill: #c4c5c8; }
+  datagrid table tbody {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    background-color: white; }
+    datagrid table tbody tr:hover td, datagrid table tbody tr:hover th {
+      background-color: #F1F1F1; }
+    datagrid table tbody tr:last-child td, datagrid table tbody tr:last-child th {
+      border-bottom: none; }
+    datagrid table tbody tr td, datagrid table tbody tr th {
+      border-bottom: 1px solid #CCC; }
+      datagrid table tbody tr td:first-child, datagrid table tbody tr th:first-child {
+        padding-left: 5px; }
+    datagrid table tbody tr th {
+      text-align: left;
+      font-weight: 600; }
+  datagrid table tfoot {
+    background-color: #E7EAF1; }
+    datagrid table tfoot td {
+      border-top: 1px solid #243A7A;
+      padding-top: 15px; }
+
+datagrid column {
+  display: none; }

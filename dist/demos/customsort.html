@@ -1,0 +1,62 @@
+<template>
+	<require from="dist/datagrid"></require>
+	<require from="dist/converters/simpledateformatter"></require>
+
+	<style type="text/css">
+		datagrid.customsearch table td:nth-child(1),
+		datagrid.customsearch table th:nth-child(1) {
+			width: 20%;
+		}
+		datagrid.customsearch table td:nth-child(2),
+		datagrid.customsearch table th:nth-child(2) {
+			width: 80%;
+		}
+	</style>
+
+	<h1>Custom sorting</h1>
+
+	<p>
+		You can have more than one field associated with a column. By default,
+		such a column would be sorted on the first field, and only sorted on a
+		second field in those cases where the values for the first field are
+		exactly the same.
+	</p>
+	<p>
+		However, this may not always be intuitive. To customize the sorting for
+		some column, you can implement a custom sorter. This is called with the
+		values of each field for two rows. Return negative if in ascending order
+		row 1 comes before row 2, a positive value if row 2 comes before 1, or
+		zero if they're equivalent.
+	</p>
+
+	<datagrid rows.bind="data" searchable="false" class="customsearch">
+		<column header="Date field" field="date">
+			${row.date | simpledateformatter}
+		</column>
+		<column field="priority string" row-header="true" sorter.bind="sortOnPriorityThenString" header="Composite column with custom sort">
+			${row.string}
+			<br><br>
+			(Priority: ${row.priority})
+		</column>
+	</datagrid>
+
+	<pre><code>sortOnPriorityThenString(aValues: any[], bValues: any[]): number {
+	let aPrio = aValues[0] == "high" ? 2 : aValues[0] == "medium" ? 1 : 0;
+	let bPrio = bValues[0] == "high" ? 2 : bValues[0] == "medium" ? 1 : 0;
+	if (aPrio != bPrio) {
+		return bPrio - aPrio;
+	}
+	return aValues[1].localeCompare(bValues[1]);
+}</code></pre>
+
+	<pre><code>&lt;datagrid rows.bind=&quot;data&quot; searchable=&quot;false&quot; class=&quot;customsearch&quot;&gt;
+	&lt;column header=&quot;Date field&quot; field=&quot;date&quot;&gt;
+		\${row.date | simpledateformatter}
+	&lt;/column&gt;
+	&lt;column field=&quot;priority string&quot; row-header=&quot;true&quot; sorter.bind=&quot;sortOnPriorityThenString&quot; header=&quot;Composite column with custom sort&quot;&gt;
+		\${row.string}
+		&lt;br&gt;&lt;br&gt;
+		(Priority: \${row.priority})
+	&lt;/column&gt;
+&lt;/datagrid&gt;</code></pre>
+</template>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Vevida Datagrid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.24/system.js"></script>
+
+	<link type="text/css" rel="stylesheet" href="./dist/style.css"/>
+  </head>
+  <body>
+	<div class="container">
+		<h1>Loading...</h1>
+	</div>
+
+	<script type="text/javascript">
+		System.import('./config.js')
+				.then(function () { return SystemJS.import('aurelia-polyfills'); })
+				.then(function() { return SystemJS.import('aurelia-bootstrapper'); })
+				.then(function(imp) {
+					imp.bootstrap(function(aurelia) {
+						aurelia.use
+							.standardConfiguration()
+							.plugin("aurelia-animator-css", (animator) => {
+								animator.useAnimationDoneClasses = true;
+								animator.verifyKeyframesExist = false;
+							});
+
+						aurelia.start().then(function() { aurelia.setRoot('dist/app', document.body); });
+					});
+				});
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

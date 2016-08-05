@@ -1,0 +1,96 @@
+<template>
+	<require from="dist/datagrid"></require>
+	<require from="dist/converters/simpledateformatter"></require>
+
+	<style type="text/css">
+		datagrid.basic table td:nth-child(1),
+		datagrid.basic table th:nth-child(1) {
+			width: 20%;
+		}
+		datagrid.basic table td:nth-child(2),
+		datagrid.basic table th:nth-child(2) {
+			width: 35%;
+		}
+		datagrid.basic table td:nth-child(3),
+		datagrid.basic table th:nth-child(3) {
+			width: 20%;
+		}
+		datagrid.basic table td:nth-child(4),
+		datagrid.basic table th:nth-child(4) {
+			width: 25%;
+		}
+		.red {
+			color: red;
+		}
+		.green {
+			color: green;
+		}
+	</style>
+
+	<h1>Basic example</h1>
+
+	<p>
+		Note the scrollable body with fixed header. The shadows on the body
+		indicate available scrolling directions.
+	</p>
+	<p>
+		Note also that by default, every column is searchable if it has
+		specified a field. However, the default search looks at (stringified)
+		values in the bound rows, not how those values are rendered. This may
+		cause some confusion if the rendered value differs significantly. In
+		such cases, you might consider using a
+		<a route-href="route: customsearch">custom search algorithm</a>.
+	</p>
+	<ul>
+		<li>
+			<code>parent</code> refers to the binding-context the datagrid is
+			placed in. In this case, it refers to the <code>Basic</code>
+			view-model.
+		</li>
+		<li>
+			By default, if no column is designated as the row-header, the first
+			column will be made row-header. To have no row-headers at all, add
+			<code>row-header="false"</code> to the first column.
+		</li>
+	</ul>
+
+	<datagrid rows.bind="data" default-sort-colum="string" class="basic">
+		<column header="Date field" field="date">
+			${row.date | simpledateformatter}
+		</column>
+		<column field="string" row-header="true">
+			<header>
+				<em>Header with markup</em><br>
+				These are row-headers.
+			</header>
+		</column>
+		<column header="No field specified">
+			${parent.getRandomValue()}
+		</column>
+		<column header="Unsortable, unsearchable boolean field" field="boolean" sortable="false" searchable="false">
+			<span class.bind="row.boolean ? 'green' : 'red'">
+				${row.boolean ? "yes" : "no"}
+			</span>
+		</column>
+	</datagrid>
+
+	<pre><code>&lt;datagrid rows.bind=&quot;data&quot; default-sort-colum=&quot;string&quot; class=&quot;basic&quot;&gt;
+	&lt;column header=&quot;Date field&quot; field=&quot;date&quot;&gt;
+		\${row.date | simpledateformatter}
+	&lt;/column&gt;
+	&lt;column field=&quot;string&quot; row-header=&quot;true&quot;&gt;
+		&lt;header&gt;
+			&lt;em&gt;Header with markup&lt;/em&gt;&lt;br&gt;
+			These are row-headers.
+		&lt;/header&gt;
+	&lt;/column&gt;
+	&lt;column header=&quot;No field specified&quot; &gt;
+		\${parent.getRandomValue()}
+	&lt;/column&gt;
+	&lt;column header=&quot;Unsortable, unsearchable boolean field&quot; field=&quot;boolean&quot; sortable=&quot;false&quot;&gt; searchable=&quot;false&quot;&gt;
+		&lt;span class.bind=&quot;row.boolean ? 'green' : 'red'&quot;&gt;
+			\${row.boolean ? &quot;yes&quot; : &quot;no&quot;}
+		&lt;/span&gt;
+	&lt;/column&gt;
+&lt;/datagrid&gt;</code></pre>
+</template>
