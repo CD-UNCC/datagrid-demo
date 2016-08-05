@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "/",
+  baseURL: "/datagrid-demo/",
   defaultJSExtensions: true,
   transpiler: false,
   paths: {
