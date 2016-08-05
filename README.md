@@ -1,7 +1,7 @@
 # Aurelia Datagrid
 
-The Vevida Datagrid is a custom component built for Aurelia, used to display
-large amounts of data in a usable, clear way.
+The Vevida Datagrid is a custom component built for [Aurelia](http://aurelia.io/),
+used to display large amounts of data in a usable, clear way.
 
 ```html
 <datagrid rows.bind="data" default-sort-colum="b">
