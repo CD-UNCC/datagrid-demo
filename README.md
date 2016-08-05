@@ -25,7 +25,7 @@ See the [demo](https://vevida.github.io/datagrid-demo) for all available options
 
 This project is a demonstration and proof-of-concept. We want to use it to gauge
 interest in this datagrid. If you think this datagrid is something you might
-want to use, or contribute to, let us know.
+want to use, or contribute to, [let us know](https://github.com/Vevida/datagrid-demo/issues/1).
 
 ## Why another one?
 
