@@ -27,6 +27,13 @@ body {
 	padding-top: 50px;
 }
 
+a#forkme img {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	border: 0;
+}
+
 datagrid {
 	.inner-wrapper {
 		background-color: $datagrid-header-background-color;
