@@ -24,7 +24,7 @@
 					imp.bootstrap(function(aurelia) {
 						aurelia.use
 							.standardConfiguration()
-							.plugin("aurelia-animator-css", (animator) => {
+							.plugin("aurelia-animator-css", function(animator) {
 								animator.useAnimationDoneClasses = true;
 								animator.verifyKeyframesExist = false;
 							});
